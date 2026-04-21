@@ -1,15 +1,22 @@
-<template>
-  <div>
-    <h1 class="text-yellow-500 font-bold">Welcome to Region Selector App</h1>
-  </div>
-</template>
+<script setup>
+const config = useRuntimeConfig()
 
-<script>
-export default {
-
-}
+const { data, error, pending } = await useFetch(
+  `${config.public.apiBase}/Regions`
+)
 </script>
 
-<style>
+<template>
+  <div>
+    <h1 class="text-xl font-bold">Regions</h1>
 
-</style>
+    <div v-if="pending">Loading...</div>
+    <div v-else-if="error">Error loading data</div>
+
+    <ul v-else>
+      <li v-for="region in data" :key="region.id">
+        {{ region.name }}
+      </li>
+    </ul>
+  </div>
+</template>
