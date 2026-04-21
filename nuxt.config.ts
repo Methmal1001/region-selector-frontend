@@ -7,5 +7,5 @@ export default defineNuxtConfig({
     public: {
       apiBase: 'https://localhost:7077/api'
     }
-  },
+  }
 })
